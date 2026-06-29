@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXT LEVEL | Gian Piero Semeraro</title>
+  <meta name="description" content="NEXT LEVEL by Gian Piero Semeraro. Teamaufbau, Mentoring und selbstständige berufliche Perspektive.">
+  <style>
+    :root {
+      --black:#020202;
+      --dark:#080808;
+      --soft:#111111;
+      --card:#151515;
+      --gold:#c9a24a;
+      --gold-light:#f2d58a;
+      --text:#f7f2e8;
+      --muted:#b8b0a2;
+      --line:rgba(201,162,74,.24);
+      --line-white:rgba(255,255,255,.10);
+      --shadow:0 30px 90px rgba(0,0,0,.65);
+    }
+    * { box-sizing:border-box; scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:var(--black);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a { color:inherit; }
+    .preloader {
+      position:fixed; inset:0; z-index:999;
+      background:#000;
+      display:grid; place-items:center;
+      animation:fadeOut 1.2s ease 2.2s forwards;
+      pointer-events:none;
+    }
+    .preloader-inner {
+      text-align:center;
+      animation:rise .9s ease both;
+    }
+    .preloader .mono {
+      color:var(--gold-light);
+      letter-spacing:.32em;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    .preloader h2 {
+      font-size:clamp(28px,5vw,62px);
+      line-height:1.05;
+      margin:0;
+      max-width:900px;
+      letter-spacing:-.05em;
+    }
+    @keyframes fadeOut { to { opacity:0; visibility:hidden; } }
+    @keyframes rise { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:80;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:18px 7%;
+      background:rgba(0,0,0,.58);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line-white);
+    }
+    .brand {
+      display:flex; gap:12px; align-items:center; font-weight:950; letter-spacing:-.02em;
+    }
+    .mark {
+      width:38px; height:38px; border-radius:14px;
+      display:grid; place-items:center;
+      color:#050505; font-weight:950; font-size:13px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      box-shadow:0 12px 34px rgba(201,162,74,.2);
+    }
+    .brand span:last-child { color:var(--gold-light); }
+    .navlinks { display:flex; gap:24px; align-items:center; color:var(--muted); font-size:14px; }
+    .navlinks a { text-decoration:none; transition:.25s; }
+    .navlinks a:hover { color:var(--gold-light); }
+    .nav-cta {
+      padding:10px 16px; border-radius:999px;
+      color:#050505!important;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      font-weight:900;
+    }
+
+    .hero {
+      min-height:100vh;
+      padding:130px 7% 80px;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 80% 25%, rgba(201,162,74,.24), transparent 32%),
+        linear-gradient(120deg, #000 0%, #040404 42%, #0b0b0b 100%);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before {
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.52) 58%, rgba(0,0,0,.15));
+      z-index:0;
+    }
+    .hero-grid {
+      position:relative; z-index:1;
+      max-width:1440px; width:100%;
+      display:grid; grid-template-columns:1.05fr .95fr; gap:70px; align-items:center;
+    }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:12px;
+      color:var(--gold-light);
+      font-size:12px; font-weight:950; letter-spacing:.24em; text-transform:uppercase;
+      margin-bottom:22px;
+    }
+    .eyebrow:before { content:""; width:42px; height:1px; background:var(--gold); }
+    h1 {
+      margin:0 0 26px;
+      max-width:900px;
+      font-size:clamp(48px,8vw,104px);
+      line-height:.92;
+      letter-spacing:-.075em;
+    }
+    h1 em {
+      color:var(--gold-light);
+      font-style:normal;
+    }
+    .lead {
+      color:var(--muted);
+      font-size:clamp(18px,2vw,22px);
+      max-width:720px;
+      margin:0 0 34px;
+    }
+    .buttons { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+    .button {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:15px 24px;
+      border-radius:999px;
+      border:1px solid transparent;
+      text-decoration:none;
+      font-weight:950;
+      transition:.25s ease;
+      cursor:pointer;
+    }
+    .button:hover { transform:translateY(-2px); }
+    .primary { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:#050505; }
+    .secondary { border-color:var(--gold); color:var(--gold-light); background:rgba(201,162,74,.05); }
+    .hero-image {
+      position:relative;
+    }
+    .hero-image:before {
+      content:"";
+      position:absolute; inset:-20px;
+      background:radial-gradient(circle at 65% 20%, rgba(201,162,74,.42), transparent 45%);
+      border-radius:42px; filter:blur(10px);
+    }
+    .hero-image img {
+      position:relative;
+      width:100%; height:min(76vh,760px);
+      object-fit:cover; object-position:center;
+      border-radius:36px;
+      border:2px solid rgba(201,162,74,.34);
+      box-shadow:var(--shadow);
+      display:block;
+    }
+    .stats {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+      max-width:790px; margin-top:34px;
+    }
+    .stat {
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:22px;
+      padding:20px;
+      backdrop-filter:blur(16px);
+    }
+    .stat strong { display:block; color:var(--gold-light); font-size:34px; line-height:1; margin-bottom:8px; }
+    .stat span { color:var(--muted); font-size:14px; }
+
+    section { padding:100px 7%; }
+    .inner { max-width:1280px; margin:0 auto; }
+    .center { text-align:center; }
+    .center .section-copy { margin-left:auto; margin-right:auto; }
+    .section-title {
+      font-size:clamp(36px,5.6vw,72px);
+      line-height:1;
+      letter-spacing:-.06em;
+      margin:0 0 20px;
+    }
+    .section-title span { color:var(--gold-light); }
+    .section-copy {
+      color:var(--muted);
+      max-width:780px;
+      font-size:18px;
+      margin:0 0 44px;
+    }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .card {
+      background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 24px 70px rgba(0,0,0,.28);
+    }
+    .card small { color:var(--gold-light); letter-spacing:.18em; text-transform:uppercase; font-weight:950; }
+    .card h3 { color:var(--text); font-size:23px; margin:12px 0 10px; letter-spacing:-.03em; }
+    .card p { color:var(--muted); margin:0; }
+
+    .split { display:grid; grid-template-columns:.9fr 1.1fr; gap:62px; align-items:center; }
+    .band {
+      background:
+        linear-gradient(rgba(0,0,0,.9),rgba(0,0,0,.97)),
+        radial-gradient(circle at 12% 20%,rgba(201,162,74,.21),transparent 34%);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .timeline { display:grid; gap:18px; }
+    .step {
+      display:grid; grid-template-columns:58px 1fr; gap:18px; align-items:start;
+    }
+    .num {
+      width:58px; height:58px;
+      display:grid; place-items:center;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(201,162,74,.12);
+      color:var(--gold-light);
+      font-weight:950;
+    }
+    .step h3 { margin:0 0 6px; font-size:22px; }
+    .step p { margin:0; color:var(--muted); }
+    .quote {
+      font-size:clamp(34px,4.8vw,62px);
+      line-height:1.06;
+      font-weight:950;
+      color:var(--gold-light);
+      letter-spacing:-.05em;
+      padding:38px;
+      border-left:4px solid var(--gold);
+      background:rgba(201,162,74,.07);
+      border-radius:0 30px 30px 0;
+    }
+
+    .big-question {
+      min-height:70vh;
+      display:grid; place-items:center;
+      text-align:center;
+      background:
+        radial-gradient(circle at center,rgba(201,162,74,.18),transparent 42%),
+        #000;
+    }
+    .big-question h2 {
+      max-width:1050px;
+      font-size:clamp(42px,8vw,104px);
+      line-height:.95;
+      letter-spacing:-.075em;
+      margin:0;
+    }
+    .big-question h2 span { color:var(--gold-light); }
+
+    .story-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .story-card {
+      border:1px solid var(--line);
+      background:var(--soft);
+      border-radius:30px;
+      overflow:hidden;
+      min-height:420px;
+      position:relative;
+      box-shadow:0 24px 70px rgba(0,0,0,.30);
+    }
+    .story-card img {
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      display:block;
+      filter:saturate(.95) contrast(1.04);
+    }
+    .story-card div { padding:22px; }
+    .story-card span { color:var(--gold-light); font-weight:950; font-size:12px; letter-spacing:.18em; text-transform:uppercase; }
+    .story-card p { color:var(--muted); margin:8px 0 0; }
+
+    .process {
+      display:grid; grid-template-columns:repeat(5,1fr); gap:16px;
+      counter-reset:process;
+    }
+    .process .card { padding:24px; }
+    .process .card:before {
+      counter-increment:process;
+      content:"0" counter(process);
+      color:var(--gold-light);
+      letter-spacing:.18em;
+      font-size:12px;
+      font-weight:950;
+    }
+    .review-wrap {
+      display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:stretch;
+    }
+    .stars { color:var(--gold-light); letter-spacing:4px; font-size:24px; margin-bottom:16px; }
+    .faq { display:grid; gap:14px; }
+    details {
+      padding:22px 24px;
+      background:rgba(255,255,255,.045);
+      border:1px solid var(--line-white);
+      border-radius:22px;
+    }
+    summary { cursor:pointer; font-weight:950; font-size:18px; }
+    details p { color:var(--muted); margin-bottom:0; }
+    .booking-box {
+      background:
+        linear-gradient(135deg,rgba(201,162,74,.13),rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:40px;
+      box-shadow:var(--shadow);
+    }
+    .booking-box h3 { font-size:clamp(28px,4vw,48px); line-height:1.05; letter-spacing:-.05em; margin:0 0 16px; }
+    .booking-box p { color:var(--muted); margin:0 0 26px; }
+    form {
+      display:grid; gap:16px;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:30px;
+    }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    input, select, textarea {
+      width:100%; border:1px solid rgba(255,255,255,.14);
+      background:#070707; color:var(--text);
+      border-radius:16px; padding:15px 16px;
+      font-size:16px; outline:none;
+    }
+    input:focus, select:focus, textarea:focus { border-color:var(--gold); }
+    textarea { min-height:130px; resize:vertical; }
+    .small { color:var(--muted); font-size:13px; margin:0; }
+    .final {
+      min-height:78vh;
+      display:grid; place-items:center;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.95)),
+        radial-gradient(circle at center,rgba(201,162,74,.25),transparent 43%);
+    }
+    .final h2 {
+      max-width:1050px;
+      margin:0 auto 24px;
+      font-size:clamp(42px,8vw,96px);
+      line-height:.95;
+      letter-spacing:-.075em;
+    }
+    .final p { color:var(--muted); max-width:760px; margin:0 auto 34px; font-size:20px; }
+    .whatsapp-float {
+      position:fixed; right:22px; bottom:22px; z-index:90;
+      padding:14px 19px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      color:#050505;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:950;
+      box-shadow:0 18px 50px rgba(0,0,0,.5);
+    }
+    footer {
+      border-top:1px solid var(--line-white);
+      padding:34px 7%;
+      display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+      color:var(--muted);
+      font-size:14px;
+      background:#020202;
+    }
+    .reveal {
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media (max-width:1050px) {
+      .navlinks { display:none; }
+      .hero-grid, .split, .review-wrap { grid-template-columns:1fr; }
+      .stats, .grid-3, .grid-4, .story-grid, .process, .form-grid { grid-template-columns:1fr; }
+      header, .hero { padding-top:110px; }
+      .hero-image img { height:auto; max-height:none; }
+      .whatsapp-float { left:18px; right:18px; text-align:center; }
+      .story-card { min-height:auto; }
+      .story-card img { height:auto; max-height:420px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="preloader">
+    <div class="preloader-inner">
+      <div class="mono">NEXT LEVEL</div>
+      <h2>Manche Entscheidungen verändern nicht nur deinen Beruf.<br>Sie verändern dein Leben.</h2>
+    </div>
+  </div>
+
+  <nav>
+    <a class="brand" href="#start" style="text-decoration:none;">
+      <span class="mark">GPS</span>
+      <span>NEXT LEVEL <span>by Gian Piero</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#story">Meine Geschichte</a>
+      <a href="#karriere">Karriere</a>
+      <a href="#einblicke">Einblicke</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="https://outlook.office.com/bookwithme/?anonymous&ismsaljsauthenabled=true&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASse0dwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp6oEJNFs1SegiVsFBiJTzU9_x8B3RyKtM33ZLnRWmfyY1OLLwvc_fZwimkEU_aem_I4N_4xuGAauEhnHZMSGgOg" target="_blank">Lass uns kennenlernen</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="start">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Unternehmer · Mentor · Team Builder</div>
+        <h1>Baue dir nicht nur einen Beruf auf. <em>Baue dir ein Leben auf.</em></h1>
+        <p class="lead">
+          Ich suche Menschen mit Haltung, Ehrgeiz und dem Wunsch, über sich hinauszuwachsen.
+          Kein klassischer Job. Sondern eine selbstständige Perspektive mit Mentoring, Struktur und einem starken Team.
+        </p>
+        <div class="buttons">
+          <a class="button primary" href="https://outlook.office.com/bookwithme/?anonymous&ismsaljsauthenabled=true&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASse0dwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp6oEJNFs1SegiVsFBiJTzU9_x8B3RyKtM33ZLnRWmfyY1OLLwvc_fZwimkEU_aem_I4N_4xuGAauEhnHZMSGgOg" target="_blank">Kennenlerngespräch buchen</a>
+          <a class="button secondary" href="https://wa.me/4917624807623?text=Hi%20Gian%20Piero%2C%20ich%20bin%20auf%20deine%20Website%20aufmerksam%20geworden%20und%20habe%20Interesse%20an%20einem%20unverbindlichen%20Kennenlerngespr%C3%A4ch.%20Ich%20freue%20mich%20auf%20deine%20R%C3%BCckmeldung." target="_blank">WhatsApp schreiben</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong data-count="6">0</strong><span>Geschäftspartner im Team</span></div>
+          <div class="stat"><strong data-count="6">0</strong><span>Jahre Erfahrung</span></div>
+          <div class="stat"><strong>B.A.</strong><span>Investition & Finanzierung</span></div>
+        </div>
+      </div>
+      <div class="hero-image reveal">
+        <img src="assets/image-1.jpeg" alt="Gian Piero Semeraro">
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="inner center">
+      <h2 class="section-title reveal">Vielleicht wartest du nicht auf einen neuen Job. <span>Vielleicht wartest du auf eine neue Richtung.</span></h2>
+      <p class="section-copy reveal">
+        NEXT LEVEL steht für Menschen, die mehr wollen als Durchschnitt: mehr Verantwortung, mehr Entwicklung, mehr Freiheit und ein Umfeld, das dich fordert.
+      </p>
+      <div class="grid-3">
+        <article class="card reveal"><small>01</small><h3>Perspektive</h3><p>Du bekommst einen klaren Einstieg in eine selbstständige berufliche Perspektive.</p></article>
+        <article class="card reveal"><small>02</small><h3>Mentoring</h3><p>Du gehst den Weg nicht alleine. Struktur, Praxis und persönlicher Austausch begleiten dich.</p></article>
+        <article class="card reveal"><small>03</small><h3>Umfeld</h3><p>Menschen, die größer denken, ziehen Menschen an, die wachsen wollen.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="story">
+    <div class="inner split">
+      <div class="reveal">
+        <div class="eyebrow">Meine Geschichte</div>
+        <h2 class="section-title">Ich kenne den Weg von unten nach oben.</h2>
+        <p class="section-copy">
+          Vom Hauptschulabschluss zum Bachelor of Arts. Von der Gastronomie meiner Eltern in die Finance-Branche.
+          Vom Start während Corona bis zum eigenen Teamaufbau.
+        </p>
+        <div class="timeline">
+          <div class="step reveal"><div class="num">01</div><div><h3>Mit 13 in der Gastronomie</h3><p>Dort habe ich gelernt, Menschen zu verstehen, zuzuhören und Verantwortung zu übernehmen.</p></div></div>
+          <div class="step reveal"><div class="num">02</div><div><h3>Hauptschulabschluss</h3><p>Kein perfekter Start. Aber genau daraus ist Hunger entstanden.</p></div></div>
+          <div class="step reveal"><div class="num">03</div><div><h3>Bachelor of Arts</h3><p>Schwerpunkt Investition & Finanzierung – fachliche Grundlage für Strategie und Beratung.</p></div></div>
+          <div class="step reveal"><div class="num">04</div><div><h3>Heute Team Builder</h3><p>6 Jahre Erfahrung, 6+ Geschäftspartner und der Anspruch, Menschen wirklich weiterzubringen.</p></div></div>
+        </div>
+      </div>
+      <div class="quote reveal">„Ich habe nicht angefangen, um durchschnittlich zu sein.“</div>
+    </div>
+  </section>
+
+  <section class="big-question">
+    <h2 class="reveal">Was wäre, wenn deine größte Chance <span>kein Zufall</span> ist?</h2>
+  </section>
+
+  <section id="karriere">
+    <div class="inner center">
+      <h2 class="section-title reveal">Welcher Weg passt zu dir?</h2>
+      <p class="section-copy reveal">
+        Ob Student, Quereinsteiger, Banker, Vertriebler oder Angestellter: Entscheidend ist nicht dein perfekter Lebenslauf. Entscheidend ist dein Wille.
+      </p>
+      <div class="grid-4">
+        <article class="card reveal"><small>Student</small><h3>Früh Verantwortung übernehmen</h3><p>Du willst nicht erst mit 35 anfangen, dein Leben aktiv zu gestalten.</p></article>
+        <article class="card reveal"><small>Quereinsteiger</small><h3>Neues Umfeld</h3><p>Du brauchst keine perfekte Erfahrung, sondern Lernbereitschaft und Kommunikation.</p></article>
+        <article class="card reveal"><small>Bank / Vertrieb</small><h3>Mehr Freiheit</h3><p>Du willst deine Leistung nicht länger in einem starren System begrenzen.</p></article>
+        <article class="card reveal"><small>Angestellt</small><h3>Mehr Potenzial</h3><p>Du spürst, dass in dir mehr steckt, als dein aktueller Alltag zeigt.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="inner center">
+      <h2 class="section-title reveal">Dein Einstieg. Klar. Direkt. Ohne Druck.</h2>
+      <p class="section-copy reveal">Erst kennenlernen. Dann verstehen. Dann entscheiden.</p>
+      <div class="process">
+        <article class="card reveal"><h3>Kennenlernen</h3><p>Ein unverbindliches Gespräch über dich, deine Ziele und deine Situation.</p></article>
+        <article class="card reveal"><h3>Einblick</h3><p>Du bekommst ein klares Bild davon, was Teamaufbau wirklich bedeutet.</p></article>
+        <article class="card reveal"><h3>Hospitation</h3><p>Du erlebst Menschen, Termine und Umfeld – realistisch und ehrlich.</p></article>
+        <article class="card reveal"><h3>Ausbildung</h3><p>Wenn es passt, erhältst du Struktur, Begleitung und fachliche Grundlagen.</p></article>
+        <article class="card reveal"><h3>Aufbau</h3><p>Du entwickelst dich persönlich, fachlich und unternehmerisch weiter.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="einblicke">
+    <div class="inner">
+      <div class="center">
+        <div class="eyebrow reveal">Behind the Success</div>
+        <h2 class="section-title reveal">Echte Einblicke. Keine Stockfotos.</h2>
+        <p class="section-copy reveal">
+          Erfolg ist nicht nur Zahl auf Papier. Erfolg ist Entwicklung, Umfeld, Familie, Erlebnisse und die Freiheit, eigene Entscheidungen zu treffen.
+        </p>
+      </div>
+      <div class="story-grid">
+        
+          <article class="story-card reveal">
+            <img src="assets/image-1.jpeg" alt="Fokus">
+            <div>
+              <span>Fokus</span>
+              <p>Ruhe, Strategie und der Anspruch, jeden Tag besser zu werden.</p>
+            </div>
+          </article>
+          <article class="story-card reveal">
+            <img src="assets/image-2.jpeg" alt="Persönlichkeit">
+            <div>
+              <span>Persönlichkeit</span>
+              <p>Authentisch bleiben. Menschen führen. Vertrauen aufbauen.</p>
+            </div>
+          </article>
+          <article class="story-card reveal">
+            <img src="assets/image-3.jpeg" alt="Leistung lohnt sich">
+            <div>
+              <span>Leistung lohnt sich</span>
+              <p>Erfolg bedeutet Freiheit, Erlebnisse und neue Perspektiven.</p>
+            </div>
+          </article>
+          <article class="story-card reveal">
+            <img src="assets/image-4.jpeg" alt="Team">
+            <div>
+              <span>Team</span>
+              <p>Gemeinsam wachsen, gemeinsam Verantwortung übernehmen.</p>
+            </div>
+          </article>
+          <article class="story-card reveal">
+            <img src="assets/image-5.jpeg" alt="Anerkennung">
+            <div>
+              <span>Anerkennung</span>
+              <p>Wer Leistung bringt, darf auch Ergebnisse feiern.</p>
+            </div>
+          </article>
+          <article class="story-card reveal">
+            <img src="assets/image-6.jpeg" alt="Mentoring">
+            <div>
+              <span>Mentoring</span>
+              <p>Praxis, Struktur und ein Umfeld, das dich weiterbringt.</p>
+            </div>
+          </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="inner review-wrap">
+      <div class="reveal">
+        <div class="eyebrow">Vertrauen</div>
+        <h2 class="section-title">Echte Stimmen sagen mehr als jede Behauptung.</h2>
+        <p class="section-copy">Schau dir Bewertungen und Erfahrungen direkt bei Google an. Vertrauen entsteht durch Klarheit, langfristige Begleitung und echte Ergebnisse.</p>
+        <a class="button secondary" href="https://share.google/Sq9BvKp09ttv9F55M" target="_blank">Google Bewertungen ansehen</a>
+      </div>
+      <article class="card reveal">
+        <div class="stars">★★★★★</div>
+        <h3>Beratung. Entwicklung. Vertrauen.</h3>
+        <p>Diese Seite steht für ehrliche Gespräche, klare Struktur und ein Team, das gemeinsam wachsen will.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="inner">
+      <div class="center">
+        <h2 class="section-title reveal">Fragen, die du dir wahrscheinlich stellst.</h2>
+        <p class="section-copy reveal">Kurz, ehrlich und ohne Schönreden.</p>
+      </div>
+      <div class="faq">
+        <details class="reveal"><summary>Brauche ich Erfahrung im Finanzbereich?</summary><p>Nein. Erfahrung hilft, ist aber keine Voraussetzung. Wichtig sind Lernbereitschaft, Kommunikation und der Wille, dich zu entwickeln.</p></details>
+        <details class="reveal"><summary>Kann ich nebenberuflich starten?</summary><p>Ja. Der Einstieg kann nebenberuflich erfolgen, damit du erst einmal prüfen kannst, ob der Weg wirklich zu dir passt.</p></details>
+        <details class="reveal"><summary>Was muss ich mitbringen?</summary><p>Verlässlichkeit, Hunger, Kommunikationsstärke, Disziplin und die Bereitschaft, Verantwortung zu übernehmen.</p></details>
+        <details class="reveal"><summary>Ist das ein Angestelltenjob?</summary><p>Nein. Es geht um den Aufbau einer selbstständigen beruflichen Perspektive mit unternehmerischem Denken.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="kennenlernen">
+    <div class="inner split">
+      <div class="reveal">
+        <div class="eyebrow">Nächster Schritt</div>
+        <h2 class="section-title">Lass uns kennenlernen.</h2>
+        <p class="section-copy">
+          Kein Druck. Kein Verkaufsgespräch. Ein ehrlicher Austausch darüber, wer du bist,
+          was du suchst und ob Teamaufbau zu dir passt.
+        </p>
+      </div>
+      <div class="booking-box reveal">
+        <h3>30 Minuten können reichen, um eine neue Richtung zu sehen.</h3>
+        <p>Buche dir direkt ein unverbindliches Kennenlerngespräch über meine Outlook-Bookings-Seite.</p>
+        <div class="buttons">
+          <a class="button primary" href="https://outlook.office.com/bookwithme/?anonymous&ismsaljsauthenabled=true&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASse0dwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp6oEJNFs1SegiVsFBiJTzU9_x8B3RyKtM33ZLnRWmfyY1OLLwvc_fZwimkEU_aem_I4N_4xuGAauEhnHZMSGgOg" target="_blank">Termin buchen</a>
+          <a class="button secondary" href="https://wa.me/4917624807623?text=Hi%20Gian%20Piero%2C%20ich%20bin%20auf%20deine%20Website%20aufmerksam%20geworden%20und%20habe%20Interesse%20an%20einem%20unverbindlichen%20Kennenlerngespr%C3%A4ch.%20Ich%20freue%20mich%20auf%20deine%20R%C3%BCckmeldung." target="_blank">Vorab per WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="inner split">
+      <div class="reveal">
+        <div class="eyebrow">Oder kurz vorstellen</div>
+        <h2 class="section-title">Schick mir deine Kurzvorstellung.</h2>
+        <p class="section-copy">Das Formular öffnet eine vorbereitete E-Mail an mich. Es werden auf der Website keine Daten gespeichert.</p>
+      </div>
+      <form id="contactForm" class="reveal">
+        <div class="form-grid">
+          <input id="name" type="text" placeholder="Vor- und Nachname" required>
+          <input id="phone" type="tel" placeholder="Telefonnummer" required>
+        </div>
+        <div class="form-grid">
+          <input id="email" type="email" placeholder="E-Mail-Adresse">
+          <input id="social" type="text" placeholder="Instagram / Xing / LinkedIn">
+        </div>
+        <select id="status">
+          <option value="">Aktuelle Situation</option>
+          <option>Angestellt</option>
+          <option>Ausbildung / Studium</option>
+          <option>Selbstständig</option>
+          <option>Bank / Versicherung / Vertrieb</option>
+          <option>Aktuell offen für Neues</option>
+        </select>
+        <textarea id="message" placeholder="Warum möchtest du dich beruflich weiterentwickeln?"></textarea>
+        <button class="button primary" type="submit">Kurzvorstellung senden</button>
+        <p class="small">Hinweis: Es öffnet sich dein E-Mail-Programm.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="final">
+    <div>
+      <h2 class="reveal">Vielleicht ist diese Website kein Zufall.</h2>
+      <p class="reveal">Vielleicht ist sie der Beginn deiner nächsten Entscheidung.</p>
+      <div class="buttons reveal" style="justify-content:center;">
+        <a class="button primary" href="https://outlook.office.com/bookwithme/?anonymous&ismsaljsauthenabled=true&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleASse0dwZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp6oEJNFs1SegiVsFBiJTzU9_x8B3RyKtM33ZLnRWmfyY1OLLwvc_fZwimkEU_aem_I4N_4xuGAauEhnHZMSGgOg" target="_blank">Lass uns kennenlernen</a>
+      </div>
+    </div>
+  </section>
+
+  <a class="whatsapp-float" href="https://wa.me/4917624807623?text=Hi%20Gian%20Piero%2C%20ich%20bin%20auf%20deine%20Website%20aufmerksam%20geworden%20und%20habe%20Interesse%20an%20einem%20unverbindlichen%20Kennenlerngespr%C3%A4ch.%20Ich%20freue%20mich%20auf%20deine%20R%C3%BCckmeldung." target="_blank">WhatsApp</a>
+
+  <footer>
+    <div>© 2026 Gian Piero Semeraro · NEXT LEVEL</div>
+    <div>Unternehmer · Mentor · Team Builder</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    let counted = false;
+    const countStats = () => {
+      if (counted) return;
+      const stats = document.querySelector(".stats");
+      if (!stats) return;
+      const rect = stats.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        counted = true;
+        document.querySelectorAll("[data-count]").forEach(el => {
+          const target = parseInt(el.dataset.count, 10);
+          let current = 0;
+          const timer = setInterval(() => {
+            current++;
+            el.textContent = current + (target === 6 ? "+" : "");
+            if (current >= target) clearInterval(timer);
+          }, 140);
+        });
+      }
+    };
+    window.addEventListener("scroll", countStats);
+    countStats();
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const social = document.getElementById("social").value;
+      const status = document.getElementById("status").value;
+      const message = document.getElementById("message").value;
+      const subject = encodeURIComponent("Kurzvorstellung NEXT LEVEL - " + name);
+      const body = encodeURIComponent(
+        "Hallo Gian Piero,\n\n" +
+        "ich bin auf deine Website aufmerksam geworden und möchte mich kurz vorstellen.\n\n" +
+        "Name: " + name + "\n" +
+        "Telefon: " + phone + "\n" +
+        "E-Mail: " + email + "\n" +
+        "Social Media: " + social + "\n" +
+        "Aktuelle Situation: " + status + "\n\n" +
+        "Warum ich mich beruflich weiterentwickeln möchte:\n" + message + "\n\n" +
+        "Beste Grüße\n" + name
+      );
+      window.location.href = "mailto:Gian-Piero.semeraro@dvag.de?subject=" + subject + "&body=" + body;
+    });
+  </script>
+</body>
+</html>
