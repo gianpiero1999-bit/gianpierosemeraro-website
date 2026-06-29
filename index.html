@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gian Piero Semeraro | Teamaufbau</title>
+  <meta name="description" content="Teamaufbau mit Gian Piero Semeraro: berufliche Perspektive, Mentoring, Selbstständigkeit und Karriere im Team." />
+  <style>
+    :root {
+      --black:#050505;
+      --dark:#101010;
+      --dark2:#171717;
+      --gold:#d4af37;
+      --gold2:#f1d27a;
+      --text:#f8f4ea;
+      --muted:#bdb6aa;
+      --line:rgba(212,175,55,.28);
+    }
+
+    * { box-sizing:border-box; margin:0; padding:0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--black);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a { color:inherit; }
+
+    .nav {
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:50;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .brand {
+      font-weight:900;
+      letter-spacing:.5px;
+    }
+
+    .brand span { color:var(--gold2); }
+
+    .nav a {
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      color:var(--muted);
+      margin-left:22px;
+    }
+
+    .nav a:hover { color:var(--gold2); }
+
+    .nav .cta {
+      background:var(--gold);
+      color:#050505;
+      padding:10px 16px;
+      border-radius:999px;
+    }
+
+    header {
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:56px;
+      align-items:center;
+      padding:120px 8% 80px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.98), rgba(0,0,0,.74)),
+        radial-gradient(circle at top right, rgba(212,175,55,.26), transparent 34%);
+    }
+
+    .badge {
+      color:var(--gold2);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-weight:900;
+      font-size:12px;
+      margin-bottom:22px;
+    }
+
+    h1 {
+      font-size:clamp(44px,7vw,86px);
+      line-height:.98;
+      letter-spacing:-3px;
+      margin-bottom:24px;
+    }
+
+    h1 span, h2 span { color:var(--gold2); }
+
+    .lead {
+      font-size:20px;
+      color:var(--muted);
+      max-width:700px;
+      margin-bottom:34px;
+    }
+
+    .buttons {
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn {
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      text-decoration:none;
+      padding:15px 24px;
+      border-radius:999px;
+      font-weight:900;
+      transition:.25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn:hover { transform:translateY(-2px); }
+
+    .primary {
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#050505;
+    }
+
+    .secondary {
+      color:var(--gold2);
+      border-color:var(--gold);
+      background:rgba(212,175,55,.06);
+    }
+
+    .hero-img img {
+      width:100%;
+      max-height:720px;
+      object-fit:cover;
+      object-position:center;
+      border-radius:30px;
+      border:2px solid var(--line);
+      box-shadow:0 30px 90px rgba(0,0,0,.72);
+      display:block;
+    }
+
+    section {
+      padding:90px 8%;
+    }
+
+    .inner {
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    .center { text-align:center; }
+
+    h2 {
+      font-size:clamp(34px,5vw,62px);
+      line-height:1.05;
+      letter-spacing:-2px;
+      margin-bottom:18px;
+    }
+
+    .sub {
+      color:var(--muted);
+      max-width:760px;
+      margin:0 auto 44px;
+      font-size:18px;
+    }
+
+    .grid4 {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .grid3 {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .card {
+      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:30px;
+      box-shadow:0 22px 65px rgba(0,0,0,.28);
+    }
+
+    .card strong {
+      display:block;
+      color:var(--gold2);
+      font-size:40px;
+      line-height:1;
+      margin-bottom:10px;
+    }
+
+    .card h3 {
+      color:var(--gold2);
+      margin-bottom:10px;
+      font-size:22px;
+    }
+
+    .card p, .card li { color:var(--muted); }
+
+    .dark {
+      background:
+        linear-gradient(rgba(0,0,0,.86), rgba(0,0,0,.96)),
+        radial-gradient(circle at left, rgba(212,175,55,.18), transparent 38%);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .split {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:52px;
+      align-items:center;
+    }
+
+    .split img {
+      width:100%;
+      border-radius:28px;
+      border:1px solid var(--line);
+      box-shadow:0 24px 70px rgba(0,0,0,.5);
+      display:block;
+    }
+
+    .timeline {
+      display:grid;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .timeline div {
+      padding:18px 20px;
+      border-left:3px solid var(--gold);
+      background:#111;
+      border-radius:0 16px 16px 0;
+      color:var(--muted);
+    }
+
+    ul {
+      list-style:none;
+      display:grid;
+      gap:12px;
+    }
+
+    li:before {
+      content:"✓ ";
+      color:var(--gold2);
+      font-weight:900;
+    }
+
+    .steps {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      counter-reset:step;
+    }
+
+    .step:before {
+      counter-increment:step;
+      content:"0" counter(step);
+      color:var(--gold2);
+      letter-spacing:2px;
+      font-weight:900;
+      font-size:13px;
+      display:block;
+      margin-bottom:12px;
+    }
+
+    .stars {
+      color:var(--gold2);
+      font-size:30px;
+      letter-spacing:5px;
+      margin-bottom:18px;
+    }
+
+    .final {
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.96)),
+        radial-gradient(circle at center, rgba(212,175,55,.25), transparent 42%);
+    }
+
+    footer {
+      padding:36px 8%;
+      text-align:center;
+      color:#91887b;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:#080808;
+      font-size:14px;
+    }
+
+    .whatsapp {
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      background:#25D366;
+      color:#050505;
+      padding:13px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      box-shadow:0 15px 45px rgba(0,0,0,.5);
+      z-index:60;
+    }
+
+    @media(max-width:950px) {
+      .nav { position:static; padding:18px 7%; }
+      .nav div:last-child { display:none; }
+      header, .split { grid-template-columns:1fr; }
+      header {
+        text-align:center;
+        padding:80px 7% 60px;
+      }
+      .buttons { justify-content:center; }
+      .grid4, .grid3, .steps { grid-template-columns:1fr; }
+      section { padding:70px 7%; }
+      .hero-img img { max-height:none; }
+      .whatsapp { left:18px; right:18px; text-align:center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav">
+    <div class="brand">Gian Piero <span>Semeraro</span></div>
+    <div>
+      <a href="#karriere">Karriere</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#bewertungen">Bewertungen</a>
+      <a class="cta" href="https://outlook.office.com/bookwithme/?anonymous&ismsaljsauthenabled=true&utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank">Gespräch buchen</a>
+    </div>
+  </nav>
+
+  <header>
+    <div>
+      <div class="badge">Teamaufbau · Unternehmertum · Entwicklung</div>
+      <h1>Mehr als nur ein Job. <span>Baue dir deine Perspektive auf.</span></h1>
+      <p class="lead">
+        Ich begleite ambitionierte Menschen beim Einstieg in die Selbstständigkeit –
+        mit persönlichem Mentoring, einem starken Team und echten Entwicklungsmöglichkeiten.
+      </p>
+      <div class="buttons">
+        <a class="btn primary" href="https://outlook.office.com/bookwithme/?anonymous&ismsaljsauthenabled=true&utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank">Kostenloses Kennenlerngespräch</a>
+        <a class="btn secondary" href="https://wa.me/4917624807623?text=Hi%20Gian%20Piero%2C%20ich%20bin%20auf%20deine%20Website%20aufmerksam%20geworden%20und%20habe%20Interesse%20an%20einem%20unverbindlichen%20Kennenlerngespr%C3%A4ch.%20Ich%20freue%20mich%20auf%20deine%20R%C3%BCckmeldung." target="_blank">WhatsApp schreiben</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="assets/hero.jpg" alt="Gian Piero Semeraro">
+    </div>
+  </header>
+
+  <section>
+    <div class="inner center">
+      <h2>Warum <span>Teamaufbau?</span></h2>
+      <p class="sub">
+        Viele Menschen wünschen sich mehr Freiheit, Entwicklung und Verantwortung.
+        Doch nur wenige gehen den ersten Schritt. Ich suche keine perfekten Lebensläufe –
+        ich suche Menschen mit Haltung, Ehrgeiz und dem Wunsch, etwas Eigenes aufzubauen.
+      </p>
+
+      <div class="grid4">
+        <div class="card"><strong>6+</strong>Geschäftspartner</div>
+        <div class="card"><strong>6</strong>Jahre Erfahrung</div>
+        <div class="card"><strong>B.A.</strong>Investition & Finanzierung</div>
+        <div class="card"><strong>100%</strong>Persönliches Mentoring</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="inner split">
+      <div>
+        <h2>Mein <span>Weg</span></h2>
+        <p class="sub" style="margin-left:0;">
+          Mit 13 Jahren habe ich jedes Wochenende in der Gastronomie meiner Eltern gearbeitet.
+          Nach meinem Hauptschulabschluss führte mich mein Weg bis zum Bachelor of Arts.
+          Während meines Studiums entschied ich mich für die Selbstständigkeit.
+          Heute begleite ich Menschen dabei, ihre eigene berufliche Perspektive aufzubauen.
+        </p>
+        <div class="timeline">
+          <div>Mit 13 Jahren: Gastronomie & Kommunikation gelernt</div>
+          <div>Hauptschulabschluss → Bachelor of Arts</div>
+          <div>Start in der Selbstständigkeit während des Studiums</div>
+          <div>Heute: Teamaufbau, Mentoring und Unternehmertum</div>
+        </div>
+      </div>
+      <img src="assets/anerkennung.png" alt="Anerkennung und Team">
+    </div>
+  </section>
+
+  <section id="karriere">
+    <div class="inner center">
+      <h2>Karriere bei uns heißt: <span>Entwicklung statt Stillstand.</span></h2>
+      <p class="sub">
+        Du bekommst keine fertige Karriere. Du baust sie dir selbst auf –
+        mit Unterstützung, Struktur und einem Umfeld, das dich weiterbringt.
+      </p>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>Persönliches Mentoring</h3>
+          <p>Du wirst von Anfang an begleitet und gehst den Weg nicht alleine.</p>
+        </div>
+        <div class="card">
+          <h3>Flexibilität</h3>
+          <p>Baue dir deine berufliche Perspektive so auf, dass sie zu deinem Leben passt.</p>
+        </div>
+        <div class="card">
+          <h3>Leistung lohnt sich</h3>
+          <p>Dein Wachstum orientiert sich an Einsatz, Entwicklung und Verantwortung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="inner split">
+      <img src="assets/team.jpg" alt="Team">
+      <div>
+        <h2>Wen ich <span>suche</span></h2>
+        <p class="sub" style="margin-left:0;">
+          Diese Möglichkeit passt besonders zu Menschen, die mehr wollen als einen 9-to-5-Alltag.
+        </p>
+        <ul>
+          <li>Studenten mit Ehrgeiz</li>
+          <li>Banker, die mehr Freiheit suchen</li>
+          <li>Menschen aus Vertrieb und Kommunikation</li>
+          <li>Quereinsteiger mit Hunger</li>
+          <li>Persönlichkeiten, die Verantwortung übernehmen wollen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf">
+    <div class="inner center">
+      <h2>So läuft unser <span>Kennenlernen</span> ab</h2>
+      <p class="sub">Klar, einfach und ohne Druck.</p>
+
+      <div class="steps">
+        <div class="card step"><h3>Gespräch</h3><p>Wir lernen uns unverbindlich kennen.</p></div>
+        <div class="card step"><h3>Einblick</h3><p>Du bekommst einen echten Blick in unser Team.</p></div>
+        <div class="card step"><h3>Hospitation</h3><p>Du erlebst, wie der Weg praktisch aussieht.</p></div>
+        <div class="card step"><h3>Entscheidung</h3><p>Danach entscheidest du, ob es zu dir passt.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="inner split">
+      <div>
+        <h2>Leistung <span>lohnt sich.</span></h2>
+        <p class="sub" style="margin-left:0;">
+          Erfolg bedeutet nicht nur Geld. Erfolg bedeutet Freiheit, Erlebnisse,
+          persönliche Entwicklung und Zeit für die Menschen, die wichtig sind.
+        </p>
+      </div>
+      <img src="assets/portugal.jpg" alt="Leistung lohnt sich">
+    </div>
+  </section>
+
+  <section id="bewertungen">
+    <div class="inner center">
+      <div class="stars">★★★★★</div>
+      <h2>Vertrauen durch echte Stimmen.</h2>
+      <p class="sub">Schau dir Bewertungen und Erfahrungen direkt bei Google an.</p>
+      <a class="btn secondary" href="https://share.google/Sq9BvKp09ttv9F55M" target="_blank">Google Bewertungen ansehen</a>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="inner">
+      <h2>Vielleicht ist genau dieses Gespräch der Beginn deiner nächsten Entscheidung.</h2>
+      <p class="sub">30 Minuten. Unverbindlich. Ehrlich. Klar.</p>
+      <div class="buttons" style="justify-content:center;">
+        <a class="btn primary" href="https://outlook.office.com/bookwithme/?anonymous&ismsaljsauthenabled=true&utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank">Gespräch vereinbaren</a>
+        <a class="btn secondary" href="https://wa.me/4917624807623?text=Hi%20Gian%20Piero%2C%20ich%20bin%20auf%20deine%20Website%20aufmerksam%20geworden%20und%20habe%20Interesse%20an%20einem%20unverbindlichen%20Kennenlerngespr%C3%A4ch.%20Ich%20freue%20mich%20auf%20deine%20R%C3%BCckmeldung." target="_blank">WhatsApp schreiben</a>
+      </div>
+    </div>
+  </section>
+
+  <a class="whatsapp" href="https://wa.me/4917624807623?text=Hi%20Gian%20Piero%2C%20ich%20bin%20auf%20deine%20Website%20aufmerksam%20geworden%20und%20habe%20Interesse%20an%20einem%20unverbindlichen%20Kennenlerngespr%C3%A4ch.%20Ich%20freue%20mich%20auf%20deine%20R%C3%BCckmeldung." target="_blank">WhatsApp</a>
+
+  <footer>
+    <p>© 2026 Gian Piero Semeraro · Teamaufbau · Unternehmertum · Persönlichkeitsentwicklung</p>
+    <p>Instagram: @gianpiero.se · Impressum · Datenschutz</p>
+  </footer>
+
+</body>
+</html>
